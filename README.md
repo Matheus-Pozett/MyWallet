@@ -62,9 +62,9 @@ Neste projeto, verificamos se você é capaz de:
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:tryber/sd-0x-project-trybewallet.git`.
+  - Use o comando: `git clone git@github.com:tryber/sd-039-project-trybewallet.git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd sd-0x-project-trybewallet`
+    - `cd sd-039-project-trybewallet`
 
   2. Instale as dependências
 
