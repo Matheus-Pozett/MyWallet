@@ -1,12 +1,15 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { LoginFormType } from '../types';
 import './login.css';
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormType>();
+  const navigate = useNavigate();
 
   const onSubmit = (data: LoginFormType) => {
     console.log(data);
+    navigate('/carteira');
   };
 
   return (
@@ -32,13 +35,12 @@ function Login() {
                 },
               }) }
             />
-            {errors?.email?.type === 'required' && <p>{errors.email.message}</p>}
-            {errors?.email?.type === 'pattern' && <p>{errors.email.message}</p>}
+            {errors?.email && <p>{errors.email.message}</p>}
           </div>
 
           <div>
             <input
-              type="text"
+              type="password"
               data-testid="password-input"
               placeholder="Senha"
               className="input-form"
@@ -49,8 +51,7 @@ function Login() {
                   message: 'A senha precisa ter no mínimo 6 caracteres',
                 } }) }
             />
-            {errors?.password?.type === 'required' && <p>{errors.password.message}</p>}
-            {errors?.password?.type === 'minLength' && <p>{errors.password.message}</p>}
+            {errors?.password && <p>{errors.password.message}</p>}
           </div>
 
           <button type="submit">Entrar</button>

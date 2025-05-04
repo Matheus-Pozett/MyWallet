@@ -34,10 +34,12 @@
   border: 1px solid #003BE5;
   width: 330px;
   height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .form-login button {
-  width: 336px;
+  width: 330px;
   height: 40px;
   border-radius: 5px;
   border: 1px solid #003BE5;
