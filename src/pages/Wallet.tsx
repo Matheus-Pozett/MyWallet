@@ -1,5 +1,7 @@
+import Header from '../components/Header';
+
 function Wallet() {
-  return <div>TrybeWallet</div>;
+  return <div><Header /></div>;
 }
 
 export default Wallet;
