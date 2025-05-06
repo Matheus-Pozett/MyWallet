@@ -1,3 +1,6 @@
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+
 export type LoginFormType = {
   email: string,
   password: string
@@ -33,3 +36,10 @@ export type TGlobalState = {
     idToEdit: number,
   }
 };
+
+export type TCurrency = {
+  code: string;
+  codein: string;
+};
+
+export type AppDispatch = ThunkDispatch<TGlobalState, null, AnyAction>;
