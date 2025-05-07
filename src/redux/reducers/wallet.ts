@@ -20,7 +20,7 @@ const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
     case REQUEST_CURRENCIES:
       return {
         ...state,
-        currencies: action.payload,
+        currencies: Object.keys(action.payload),
       };
 
     case REQUEST_FAILED:

@@ -1,13 +1,15 @@
 // import { useForm } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCurrenciesApi } from '../redux/actions';
-import { AppDispatch } from '../types';
+import { AppDispatch, TGlobalState } from '../types';
 
 function WalletForm() {
   // const { register } = useForm();
   const dispatch: AppDispatch = useDispatch();
+  const currencie = useSelector((globalState: TGlobalState) => globalState.wallet);
+  const { currencies } = currencie;
 
   useEffect(() => {
     dispatch(getCurrenciesApi());
@@ -36,17 +38,18 @@ function WalletForm() {
 
       <label htmlFor="metodo">Método de pagamento</label>
       <select data-testid="method-input" id="metodo">
-        <option value="">Dinheiro</option>
-        <option value="">Cartão de crédito</option>
-        <option value="">Cartão de débito</option>
+        <option value="dinheiro">Dinheiro</option>
+        <option value="credito">Cartão de crédito</option>
+        <option value="debito">Cartão de débito</option>
       </select>
 
       <label htmlFor="moeda">Moeda</label>
       <select data-testid="currency-input" id="moeda">
-        <option value="">Dinheiro</option>
-        <option value="">Cartão de crédito</option>
-        <option value="">Cartão de débito</option>
+        {currencies.map((data) => (
+          <option key={ data }>{data}</option>
+        ))}
       </select>
+      <button type="submit">Adicionar Despesa</button>
     </form>
   );
 }

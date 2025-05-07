@@ -37,9 +37,4 @@ export type TGlobalState = {
   }
 };
 
-export type TCurrency = {
-  code: string;
-  codein: string;
-};
-
 export type AppDispatch = ThunkDispatch<TGlobalState, null, AnyAction>;

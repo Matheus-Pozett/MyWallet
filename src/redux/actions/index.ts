@@ -1,6 +1,6 @@
 // Coloque aqui suas actions
 
-import { AppDispatch, SetEmailAction, TCurrency } from '../../types';
+import { AppDispatch, SetEmailAction } from '../../types';
 import { getCurrencies } from '../../utils/api';
 
 export const SET_EMAIL = 'SET_EMAIL';
@@ -30,13 +30,16 @@ export const getCurrenciesApi = () => {
   return async (dispatch: AppDispatch) => {
     dispatch(requestStarted());
     try {
-      const currencies: Record<string, TCurrency> = await getCurrencies();
+      const dataAPI = await getCurrencies();
 
-      const currencyCodes = Object.values(currencies)
-        .filter((currency) => currency.codein !== 'BRLT')
-        .map((currency) => currency.code);
+      const currencies = Object.entries(dataAPI)
+        .filter(([key]) => key !== 'USDT')
+        .reduce((acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {} as typeof dataAPI);
 
-      dispatch(requestSuccessful(currencyCodes));
+      dispatch(requestSuccessful(currencies));
     } catch (error) {
       dispatch(requestFailed());
     }
