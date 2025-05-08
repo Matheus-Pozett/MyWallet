@@ -1,32 +1,62 @@
-// import { useForm } from 'react-hook-form';
-
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrenciesApi } from '../redux/actions';
+import { useForm } from 'react-hook-form';
+import { addExpenseThunk, getCurrenciesApi } from '../redux/actions';
 import { AppDispatch, TGlobalState } from '../types';
 
+type TWalletForm = {
+  description: string,
+  tag: string,
+  value: string,
+  method: string,
+  currency: string
+};
+
 function WalletForm() {
-  // const { register } = useForm();
+  const { register, handleSubmit, reset } = useForm<TWalletForm>(
+    { defaultValues: {
+      description: '',
+      value: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    } },
+  );
+
   const dispatch: AppDispatch = useDispatch();
   const currencie = useSelector((globalState: TGlobalState) => globalState.wallet);
   const { currencies } = currencie;
 
   useEffect(() => {
     dispatch(getCurrenciesApi());
-  }, []);
+  }, [dispatch]);
+
+  const onSubmit = (data: any) => {
+    dispatch(addExpenseThunk(data));
+    reset();
+  };
 
   return (
-    <form>
+    <form onSubmit={ handleSubmit(onSubmit) }>
       <label htmlFor="despesa">Descrição da despesa</label>
-      <input type="text" id="despesa" />
+      <input
+        type="text"
+        id="despesa"
+        data-testid="description-input"
+        { ...register('description') }
+      />
 
       <label htmlFor="tag">Categoria da despesa</label>
-      <select data-testid="tag-input" id="tag">
-        <option value="">Alimentação</option>
-        <option value="">Lazer</option>
-        <option value="">Trabalho</option>
-        <option value="">Transporte</option>
-        <option value="">Saúde</option>
+      <select
+        data-testid="tag-input"
+        id="tag"
+        { ...register('tag') }
+      >
+        <option value="Alimentação">Alimentação</option>
+        <option value="Lazer">Lazer</option>
+        <option value="Trabalho">Trabalho</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Saúde">Saúde</option>
       </select>
 
       <label htmlFor="valor">Valor</label>
@@ -34,19 +64,28 @@ function WalletForm() {
         type="text"
         id="valor"
         data-testid="value-input"
+        { ...register('value') }
       />
 
       <label htmlFor="metodo">Método de pagamento</label>
-      <select data-testid="method-input" id="metodo">
-        <option value="dinheiro">Dinheiro</option>
-        <option value="credito">Cartão de crédito</option>
-        <option value="debito">Cartão de débito</option>
+      <select
+        data-testid="method-input"
+        id="metodo"
+        { ...register('method') }
+      >
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão de crédito">Cartão de crédito</option>
+        <option value="Cartão de débito">Cartão de débito</option>
       </select>
 
       <label htmlFor="moeda">Moeda</label>
-      <select data-testid="currency-input" id="moeda">
+      <select
+        data-testid="currency-input"
+        id="moeda"
+        { ...register('currency') }
+      >
         {currencies.map((data) => (
-          <option key={ data }>{data}</option>
+          <option key={ data } value={ data }>{data}</option>
         ))}
       </select>
       <button type="submit">Adicionar Despesa</button>

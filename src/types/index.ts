@@ -15,14 +15,22 @@ export type SetEmailAction = {
   payload: UserState;
 };
 
+type TCurrency = {
+  code: string;
+  name: string;
+  ask: string;
+};
+
+type TExchangeRates = Record<string, TCurrency>;
+
 type TExpenses = {
   id: number,
-  value: number,
+  value: string,
   currency: string,
   method: string,
   tag: string,
   description: string,
-  exchangeRates: number
+  exchangeRates: TExchangeRates
 };
 
 export type TGlobalState = {
