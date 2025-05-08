@@ -17,11 +17,12 @@ function Header() {
         src="/mywallet.svg"
         alt="logo"
       />
-      <s
+      <p
         data-testid="total-field"
       >
         {total.toFixed(2)}
-      </s>
+      </p>
+      <p data-testid="header-currency-field">BRL</p>
       <p data-testid="email-field">{email}</p>
     </header>
   );

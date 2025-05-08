@@ -61,7 +61,7 @@ function WalletForm() {
 
       <label htmlFor="valor">Valor</label>
       <input
-        type="text"
+        type="number"
         id="valor"
         data-testid="value-input"
         { ...register('value') }
