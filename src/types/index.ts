@@ -33,6 +33,14 @@ type TExpenses = {
   exchangeRates: TExchangeRates
 };
 
+export type TWalletState = {
+  currencies: string[];
+  expenses: TExpenses[];
+  editor: boolean;
+  idToEdit: number;
+  isLoading: boolean;
+};
+
 export type TGlobalState = {
   user: {
     email: string

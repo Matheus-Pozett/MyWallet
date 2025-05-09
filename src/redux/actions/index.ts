@@ -8,6 +8,7 @@ export const REQUEST_STARTED = 'REQUEST_STARTED';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const getEmail = (email: string): SetEmailAction => ({
   type: SET_EMAIL,
@@ -30,6 +31,11 @@ const requestFailed = () => ({
 const addExpense = (data: any) => ({
   type: ADD_EXPENSE,
   payload: data,
+});
+
+export const deleteExpense = (id: number) => ({
+  type: DELETE_EXPENSE,
+  payload: id,
 });
 
 export const getCurrenciesApi = () => {

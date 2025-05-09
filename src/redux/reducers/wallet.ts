@@ -1,8 +1,14 @@
 import { AnyAction } from 'redux';
 import {
-  ADD_EXPENSE, REQUEST_CURRENCIES, REQUEST_FAILED, REQUEST_STARTED } from '../actions';
+  ADD_EXPENSE,
+  DELETE_EXPENSE,
+  REQUEST_CURRENCIES,
+  REQUEST_FAILED,
+  REQUEST_STARTED,
+} from '../actions';
+import { TWalletState } from '../../types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: TWalletState = {
   currencies: [],
   expenses: [],
   editor: false,
@@ -33,6 +39,11 @@ const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
     case ADD_EXPENSE:
       return {
         ...state, expenses: [...state.expenses, action.payload],
+      };
+    case DELETE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses.filter((expense) => expense.id !== action.payload),
       };
     default:
       return state;
