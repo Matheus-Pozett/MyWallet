@@ -23,7 +23,7 @@ type TCurrency = {
 
 type TExchangeRates = Record<string, TCurrency>;
 
-type TExpenses = {
+export type TExpenses = {
   id: number,
   value: string,
   currency: string,

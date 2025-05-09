@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TGlobalState } from '../types';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, startEditExpense } from '../redux/actions';
 
 function Table() {
   const expenses = useSelector(
@@ -46,7 +46,12 @@ function Table() {
               <td>{convertedValue.toFixed(2)}</td>
               <td>Real</td>
               <td>
-                <button>Editar</button>
+                <button
+                  data-testid="edit-btn"
+                  onClick={ () => dispatch(startEditExpense(id)) }
+                >
+                  Editar
+                </button>
                 <button
                   onClick={ () => handleDeleteExpense(id) }
                   data-testid="delete-btn"

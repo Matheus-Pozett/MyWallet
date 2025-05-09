@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { addExpenseThunk, getCurrenciesApi } from '../redux/actions';
+import { addExpenseThunk, editExpense, getCurrenciesApi } from '../redux/actions';
 import { AppDispatch, TGlobalState } from '../types';
 
 type TWalletForm = {
@@ -25,14 +25,30 @@ function WalletForm() {
 
   const dispatch: AppDispatch = useDispatch();
   const currencie = useSelector((globalState: TGlobalState) => globalState.wallet);
+  const { editor, idToEdit, expenses } = useSelector(
+    (state: TGlobalState) => state.wallet,
+  );
   const { currencies } = currencie;
 
   useEffect(() => {
     dispatch(getCurrenciesApi());
   }, [dispatch]);
 
-  const onSubmit = (data: any) => {
-    dispatch(addExpenseThunk(data));
+  const onSubmit = (data: TWalletForm) => {
+    if (editor) {
+      const original = expenses.find((exp) => exp.id === idToEdit);
+      if (!original) return;
+
+      const updatedExpense = {
+        ...data,
+        id: original.id,
+        exchangeRates: original.exchangeRates, // mantém o câmbio
+      };
+
+      dispatch(editExpense(updatedExpense));
+    } else {
+      dispatch(addExpenseThunk(data));
+    }
     reset();
   };
 
@@ -88,7 +104,9 @@ function WalletForm() {
           <option key={ data } value={ data }>{data}</option>
         ))}
       </select>
-      <button type="submit">Adicionar Despesa</button>
+      <button type="submit">
+        {editor ? 'Editar despesa' : 'Adicionar despesa'}
+      </button>
     </form>
   );
 }

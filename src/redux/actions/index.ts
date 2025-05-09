@@ -1,6 +1,6 @@
 // Coloque aqui suas actions
 
-import { AppDispatch, SetEmailAction } from '../../types';
+import { AppDispatch, SetEmailAction, TExpenses } from '../../types';
 import { getCurrencies } from '../../utils/api';
 
 export const SET_EMAIL = 'SET_EMAIL';
@@ -9,6 +9,8 @@ export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const START_EDIT_EXPENSE = 'START_EDIT_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const getEmail = (email: string): SetEmailAction => ({
   type: SET_EMAIL,
@@ -36,6 +38,16 @@ const addExpense = (data: any) => ({
 export const deleteExpense = (id: number) => ({
   type: DELETE_EXPENSE,
   payload: id,
+});
+
+export const startEditExpense = (id: number) => ({
+  type: START_EDIT_EXPENSE,
+  payload: id,
+});
+
+export const editExpense = (expense: TExpenses) => ({
+  type: EDIT_EXPENSE,
+  payload: expense,
 });
 
 export const getCurrenciesApi = () => {
