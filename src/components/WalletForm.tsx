@@ -42,7 +42,7 @@ function WalletForm() {
       const updatedExpense = {
         ...data,
         id: original.id,
-        exchangeRates: original.exchangeRates, // mantém o câmbio
+        exchangeRates: original.exchangeRates,
       };
 
       dispatch(editExpense(updatedExpense));
