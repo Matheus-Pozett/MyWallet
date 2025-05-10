@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { TGlobalState } from '../types';
+import './header.css';
 
 function Header() {
   const { email } = useSelector((globalState: TGlobalState) => globalState.user);
@@ -12,18 +13,26 @@ function Header() {
   }, 0);
 
   return (
-    <header>
+    <header className="header-container">
       <img
         src="/mywallet.svg"
         alt="logo"
       />
-      <p
-        data-testid="total-field"
-      >
-        {total.toFixed(2)}
-      </p>
-      <p data-testid="header-currency-field">BRL</p>
-      <p data-testid="email-field">{email}</p>
+
+      <div className="total-despesas-box">
+        <img src="/Moedas.svg" alt="logo moedas" />
+        <p className="total-despesa-text">
+          <strong>Total de despesas:</strong>
+          {' '}
+          {total.toFixed(2)}
+          {' '}
+          BRL
+        </p>
+      </div>
+      <div className="email-container">
+        <img src="/user.svg" alt="foto profile" />
+        <p className="email" data-testid="email-field">{email}</p>
+      </div>
     </header>
   );
 }
