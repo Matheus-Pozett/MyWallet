@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TGlobalState } from '../types';
 import { deleteExpense, startEditExpense } from '../redux/actions';
+import './table.css';
 
 function Table() {
   const expenses = useSelector(
@@ -14,9 +15,9 @@ function Table() {
   };
 
   return (
-    <table>
+    <table className="table">
       <thead>
-        <tr>
+        <tr className="cabecalho">
           <th>Descrição</th>
           <th>Tag</th>
           <th>Método de pagamento</th>
@@ -28,7 +29,7 @@ function Table() {
           <th>Editar/Excluir</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="tbody">
         {expenses.map((expense) => {
           const {
             currency, description, exchangeRates, id, method, tag, value } = expense;
@@ -36,8 +37,8 @@ function Table() {
           const convertedValue = Number(value) * exchangeRate;
 
           return (
-            <tr key={ id }>
-              <td>{description}</td>
+            <tr key={ id } className="items">
+              <td className="desc">{description}</td>
               <td>{tag}</td>
               <td>{method}</td>
               <td>{Number(value).toFixed(2)}</td>
@@ -49,14 +50,16 @@ function Table() {
                 <button
                   data-testid="edit-btn"
                   onClick={ () => dispatch(startEditExpense(id)) }
+                  className="button-edit"
                 >
-                  Editar
+                  <img src="/Editar.svg" alt="editar" className="img-edit" />
                 </button>
                 <button
                   onClick={ () => handleDeleteExpense(id) }
                   data-testid="delete-btn"
+                  className="button-excluir"
                 >
-                  Excluir
+                  <img src="/exluir.svg" alt="excluir" className="img-excluir" />
                 </button>
               </td>
             </tr>

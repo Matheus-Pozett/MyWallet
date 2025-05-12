@@ -1,0 +1,46 @@
+.table {
+  margin-top: 250px;
+  width: 1040px;
+}
+
+.cabecalho {
+  height: 53.2px;
+  color: white;
+}
+
+.cabecalho th {
+  width: 111px;
+}
+
+.items td {
+  color: #2FC18C;
+  text-align: center;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+
+.button-edit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 15.318px;
+  height: 20.613px;
+  margin-right: 10px;
+}
+
+.button-excluir {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 15.318px;
+height: 13.613px;
+}
+
+.img-edit {
+  background: none;
+  background-color: inherit;
+  border: none;
+}

@@ -10,7 +10,9 @@ function Wallet() {
         <Header />
         <WalletForm />
       </div>
-      <Table />
+      <div className="table-container">
+        <Table />
+      </div>
     </main>
   );
 }
