@@ -4,7 +4,7 @@ Bem-vindo ao **Trybe Wallet**!. O projeto consiste em uma aplicação que regist
 
 ## 🌐 Veja o Projeto Online
 
-Acesse o projeto online através do [link](https://trybetunes-pozett.vercel.app).
+Acesse o projeto online através do [link](https://my-wallet-gilt.vercel.app/).
 
 ## 🚀 Funcionalidades
 
