@@ -39,7 +39,7 @@ function Login() {
                 },
               }) }
             />
-            {errors?.email && <p>{errors.email.message}</p>}
+            {errors?.email && <p className="error-msg">{errors.email.message}</p>}
           </div>
 
           <div>
@@ -55,7 +55,7 @@ function Login() {
                   message: 'A senha precisa ter no mínimo 6 caracteres',
                 } }) }
             />
-            {errors?.password && <p>{errors.password.message}</p>}
+            {errors?.password && <p className="error-msg">{errors.password.message}</p>}
           </div>
 
           <button type="submit" disabled={ !isValid }>Entrar</button>

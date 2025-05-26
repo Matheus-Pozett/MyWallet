@@ -14,7 +14,7 @@ type TWalletForm = {
 };
 
 function WalletForm() {
-  const { register, handleSubmit, reset } = useForm<TWalletForm>(
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<TWalletForm>(
     { defaultValues: {
       description: '',
       value: '',
@@ -63,8 +63,11 @@ function WalletForm() {
             id="despesa"
             className="description-input"
             data-testid="description-input"
-            { ...register('description') }
+            { ...register('description', { required: 'Descrição obrigatória' }) }
           />
+          {errors.description && (
+            <p className="error-msg">{errors.description.message}</p>
+          )}
           <label htmlFor="tag">Categoria da despesa</label>
           <select
             data-testid="tag-input"
