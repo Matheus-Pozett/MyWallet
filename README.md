@@ -41,13 +41,13 @@ Acesse o projeto online através do [link](https://my-wallet-gilt.vercel.app/).
 1. Clone o repositório:
 
 ```bash
-git clone git@github.com:mariacarolarm/TrybeWallet.git
+git clone git@github.com:Matheus-Pozett/Trybe-Wallet.git
 ```
 
 2. Navegue até o diretório do projeto:
 
 ```bash
-cd TrybeWallet
+cd Trybe-Wallet
 ```
 
 3. Instale as dependências:
